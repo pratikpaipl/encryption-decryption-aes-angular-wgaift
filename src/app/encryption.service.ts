@@ -7,19 +7,19 @@ import * as CryptoTS from 'crypto-ts';
 export class EncryptionService {
   key: string = '1njanrhdkCnsahrebfdMvbjo32hqnd31';
   iv: string = 'jsKidmshatyb4jdu';
-  appProperties = {
-    VALUES: {
-      KEY: 'MTIzNDU2Nzg5MEFCQ0RFRkdISUpLTE1O',
-      IV: 'jsKidmshatyb4jdu',
-    },
-  };
+  // appProperties = {
+  //   VALUES: {
+  //     KEY: 'MTIzNDU2Nzg5MEFCQ0RFRkdISUpLTE1O',
+  //     IV: 'jsKidmshatyb4jdu',
+  //   },
+  // };
 
   constructor() {}
 
   encryptionAES(msg) {
     // Encrypt
     const ciphertext = CryptoTS.AES.encrypt(msg, this.key, {
-      iv: CryptoTS.enc.Hex.parse('jsKidmshatyb4jdu'),
+      iv: CryptoTS.enc.Hex.parse(this.iv),
     });
     return ciphertext.toString();
   }
@@ -28,7 +28,7 @@ export class EncryptionService {
     // Decrypt
     
     const bytes = CryptoTS.AES.decrypt(msg, this.key, {
-      iv: CryptoTS.enc.Hex.parse('jsKidmshatyb4jdu'),
+      iv: CryptoTS.enc.Hex.parse(this.iv),
     });
     const plaintext = bytes.toString(CryptoTS.enc.Utf8);
     return plaintext;
